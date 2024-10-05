@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import dynaconf
+
+from dynaconf import settings
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mr6+@rkv*x^jru*^xtzj0dm3c3e&8foz!m$_3_nyb8%&da*g4n'
+SECRET_KEY = settings.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,8 +82,12 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': settings.get('DB_NAME'),         # Replace with your database name
+        'USER': settings.get('DB_USER'),         # Replace with your database user
+        'PASSWORD': settings.get('DB_PASS'), # Replace with your database password
+        'HOST': settings.get('DB_HOST'),                   # Set to 'localhost' or your database host
+        'PORT': settings.get('DB_PORT'),                        # Default PostgreSQL port
     }
 }
 
@@ -123,3 +132,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+settings = dynaconf.DjangoDynaconf(
+    __name__,
+    ENVVAR_PREFIX_FOR_DYNACONF='DYNACONF',
+    ENV_SWITCHER_FOR_DYNACONF='DJANGO_ENV',
+    ENVVAR_FOR_DYNACONF='PROJECTNAME_SETTINGS',
+)
