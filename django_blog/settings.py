@@ -16,9 +16,19 @@ import dynaconf
 
 from dynaconf import settings
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+settings = dynaconf.LazySettings(
+    root_path=BASE_DIR,
+    envvar_prefix=False,
+    env_switcher="DJANGO_ENV",
+    environments=True,
+    load_dotenv=True,
+    default_settings_paths=dynaconf.DEFAULT_SETTINGS_FILES,
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -134,9 +144,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-settings = dynaconf.DjangoDynaconf(
-    __name__,
-    ENVVAR_PREFIX_FOR_DYNACONF='DYNACONF',
-    ENV_SWITCHER_FOR_DYNACONF='DJANGO_ENV',
-    ENVVAR_FOR_DYNACONF='PROJECTNAME_SETTINGS',
-)
+settings = dynaconf.DjangoDynaconf(__name__)

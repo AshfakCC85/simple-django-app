@@ -1,0 +1,56 @@
+# Python cache files
+__pycache__
+*.py[cod]
+
+# Virtual environment directories
+venv/
+env/
+ENV/
+.venv/
+
+# Django migrations
+*/migrations/*.py
+*/migrations/__init__.py
+
+# Local configuration files
+*.env
+*.local
+
+# Static and media files
+static/
+media/
+
+# Log files
+*.log
+
+# IDE files
+*.idea/
+*.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Test and temp files
+*.tmp
+*.temp
+*.pytest_cache/
+*.coverage.*
+.coverage
+nosetests.xml
+*.cover
+*.pdb
+
+# Docker files
+Dockerfile
+docker-compose.yml
+
+# Git files
+.git
+.gitignore
+
+# Other system files
+.DS_Store
+Thumbs.db
