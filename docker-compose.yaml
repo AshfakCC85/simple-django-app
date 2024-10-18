@@ -6,7 +6,6 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=1
       - DJANGO_ENV=docker
     depends_on:
       - db

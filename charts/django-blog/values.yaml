@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ashfak1285/django-blog
+  repository: ashfak1285/django-blog:1.0
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -67,4 +67,6 @@ resources:
 
 env:
   - name : DJANGO_ENV
-    value : docker
+    value : kubernetes
+  - name : DB_HOST
+    value : postgres-postgresql-hl
