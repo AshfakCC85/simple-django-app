@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ashfak1285/django-blog:1.0
+  repository: ashfak1285/django-blog:1.2
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
